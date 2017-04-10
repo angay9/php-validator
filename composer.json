@@ -1,0 +1,15 @@
+{
+    "name": "andriy/php-validator",
+    "authors": [
+        {
+            "name": "Andriy Haydash",
+            "email": "angay9@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Validation\\": "src/Validation"
+        }
+    }
+}
