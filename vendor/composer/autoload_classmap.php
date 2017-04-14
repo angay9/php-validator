@@ -6,9 +6,17 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Validation\\Constraint' => $baseDir . '/src/Validation/Constraint.php',
-    'Validation\\ErrorFormatter' => $baseDir . '/src/Validation/ErrorFormatter.php',
-    'Validation\\ErrorList' => $baseDir . '/src/Validation/ErrorList.php',
-    'Validation\\JsonFormatter' => $baseDir . '/src/Validation/JsonFormatter.php',
+    'Events\\EventDispatcher' => $baseDir . '/src/Events/EventDispatcher.php',
+    'Events\\EventDispatcherInterface' => $baseDir . '/src/Events/EventDispatcherInterface.php',
+    'Events\\Listener' => $baseDir . '/src/Events/Listener.php',
+    'Forms\\Fields\\Field' => $baseDir . '/src/Forms/Fields/Field.php',
+    'Forms\\Fields\\TextInput' => $baseDir . '/src/Forms/Fields/TextInput.php',
+    'Forms\\Form' => $baseDir . '/src/Forms/Form.php',
+    'Validation\\Constraints\\Constraint' => $baseDir . '/src/Validation/Constraints/Constraint.php',
+    'Validation\\Constraints\\NotNull' => $baseDir . '/src/Validation/Constraints/NotNull.php',
+    'Validation\\Exceptions\\FormatterNotSetException' => $baseDir . '/src/Validation/Exceptions/FormatterNotSetException.php',
+    'Validation\\Formatters\\ErrorFormatter' => $baseDir . '/src/Validation/Formatters/ErrorFormatter.php',
+    'Validation\\Formatters\\JsonFormatter' => $baseDir . '/src/Validation/Formatters/JsonFormatter.php',
     'Validation\\Validator' => $baseDir . '/src/Validation/Validator.php',
+    'Validation\\ValidatorInterface' => $baseDir . '/src/Validation/ValidatorInterface.php',
 );

@@ -2,7 +2,10 @@
 
 namespace Validation;
 
-class Validator 
+use Validation\Exceptions\FormatterNotSetException;
+use Validation\Formatters\ErrorFormatter;
+
+class Validator implements ValidatorInterface
 {
     protected $formatter;
 
@@ -19,7 +22,7 @@ class Validator
             foreach ($validators as $constraint) 
             {
                 $constraint->setValue($data[$key]);
-
+                
                 if (!$constraint->validate()) 
                 {
                     $this->addError($key, $constraint->getErrorMessage());
@@ -27,7 +30,7 @@ class Validator
             } 
         }
 
-        return count($this->errors) > 0;
+        return count($this->errors) == 0;
     }
 
     protected function addError($key, $message)
@@ -48,9 +51,14 @@ class Validator
     public function getErrors()
     {
         if (!$this->formatter) {
-            throw new \LogicException("You need to set formatter before calling get errors");
+            throw new FormatterNotSetException("You need to set formatter before calling get errors");
         }
 
         return $this->formatter->format($this->errors);
+    }
+
+    public function isValid()
+    {
+        return count($this->errors) == 0;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Validation;
+namespace Validation\Formatters;
 
 class JsonFormatter extends ErrorFormatter 
 {

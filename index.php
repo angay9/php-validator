@@ -1,31 +1,45 @@
 <?php
 
 require_once(__DIR__ . '/vendor/autoload.php');
+require_once(__DIR__ . '/RegistrationForm.php');
 
-use Validation\Validator;
-use Validation\NotNull;
-use Validation\JsonFormatter;
+use Events\Listener;
+use Forms\FormFactory;
 
-try {
-    $v = new Validator();
-    $data = ['a' => 2, 'b' => null];
-    $v->validate(
-        $data,
-        [
-            'a' => [
-                new NotNull
-            ],
-            'b' => [
-                new NotNull
-            ]
-        ]
-    );
+class FormListener extends Listener 
+{
+    public function handle($data = null) 
+    {
+        echo 'listening';
+    }
 
-    $v->setErrorFormatter(new JsonFormatter);
-
-    var_dump($v->getErrors());
-    die;
-    
-} catch (Exception $e) {
-    var_dump($e);
+    public function listensFor() 
+    {
+        return 'form.rendered';
+    }
 }
+
+$form = FormFactory::make(RegistrationForm::class);
+$form->setData([
+    'firstname' =>  'John',
+    'lastname'  =>  'Doe',
+    'email' =>  'test@mail.com',
+    'password'  =>  'secret'
+]);
+
+// POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $errors = '';
+
+    $form->setData($_POST);
+
+    if (!$form->isValid()) {
+        $errors = $form->getValidator()->getErrors();   
+    }
+
+    echo($errors);
+}
+
+echo $form->render();
+
+

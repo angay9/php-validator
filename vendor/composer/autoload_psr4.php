@@ -7,4 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Validation\\' => array($baseDir . '/src/Validation'),
+    'Forms\\' => array($baseDir . '/src/Forms'),
+    'Events\\' => array($baseDir . '/src/Events'),
 );
