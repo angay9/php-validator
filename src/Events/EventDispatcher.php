@@ -8,7 +8,7 @@ class EventDispatcher implements EventDispatcherInterface
 
     public function attach(Listener $listener)
     {
-        $key = $this->getListenerKey();
+        $key = $this->getListenerKey($listener);
 
         if (!isset($this->listeners[$key])) 
         {
@@ -18,7 +18,7 @@ class EventDispatcher implements EventDispatcherInterface
 
     public function detach(Listener $listener)
     {
-        $key = $this->getListenerKey();
+        $key = $this->getListenerKey($listener);
 
         if (isset($this->listeners[$key])) 
         {
@@ -28,6 +28,7 @@ class EventDispatcher implements EventDispatcherInterface
 
     public function notify($event, array $data = [])
     {
+        // var_dump($event, $this->listeners);
         foreach ($this->listeners as $listener) 
         {
             if ($listener->listensFor() === $event) 

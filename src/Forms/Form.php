@@ -226,8 +226,27 @@ abstract class Form
         return $this;
     }
 
+    public function addConstraints($field, array $constraints)
+    {
+        if (!empty($existing = $this->constraints[$field])) {
+            $constraints = array_merge($existing, $constraints);
+        }
+
+        $this->constraints[$field] = $constraints;
+    }
+
+    public function removeConstraints($field)
+    {
+        if (!empty($this->constraints[$field])) {
+            unset($this->constraints[$field]);
+        }
+    }
+
     public function setData(array $data)
     {
+
+        $this->dispatcher->notify('form.pre_set_data', ['form' => $this]);
+
         foreach ($this->fields as $field) 
         {
             $name = $field->getName();
@@ -237,5 +256,8 @@ abstract class Form
                 $field->setValue($data[$name]);
             }
         }
+
+        $this->dispatcher->notify('form.post_set_data', ['form' => $this, 'data' => $data]);
+
     }
 }

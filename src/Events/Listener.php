@@ -4,7 +4,7 @@ namespace Events;
 
 abstract class Listener 
 {
-    abstract public function handle($data = null);
+    abstract public function handle($event = null);
 
     abstract function listensFor();
 }

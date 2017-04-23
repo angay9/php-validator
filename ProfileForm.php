@@ -11,7 +11,7 @@ use Validation\Constraints\NotNull;
 use Validation\Formatters\JsonFormatter;
 use Validation\Formatters\HtmlFormatter;
 
-class RegistrationForm extends Form 
+class ProfileForm extends Form 
 {
     public function setUp()
     {
@@ -19,19 +19,13 @@ class RegistrationForm extends Form
         $this->setMethod('POST');
 
         $this->setFields([
-            new TextInput("firstname"),
-            new TextInput("lastname"),
+            new TextInput("name"),
             new EmailInput("email"),
-            new PasswordInput("password"),
-            new SubmitInput("register"),
+            // new SubmitInput("Save changes"),
         ]);
 
         $this->setConstraints([
-            'firstname' =>  [
-                new NotNull,
-                new MinLength(['min_length' => 4])
-            ],
-            'lastname' =>  [
+            'name' =>  [
                 new NotNull,
                 new MinLength(['min_length' => 4])
             ],
@@ -40,13 +34,8 @@ class RegistrationForm extends Form
                 new MinLength(['min_length' => 4]),
                 new Email
             ],
-            'password' =>  [
-                new NotNull,
-                new MinLength(['min_length' => 4])
-            ],
         ]);
 
         $this->validator->setErrorFormatter(new HtmlFormatter);
-        // $this->validator->setErrorFormatter(new JsonFormatter);
     }
 }
