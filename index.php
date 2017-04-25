@@ -19,6 +19,7 @@ class FormListener extends Listener
         if (!isset($event['data']) || !isset($event['form'])) {
             return;
         }
+        
         $form = $event['form'];
         $data = $event['data'];
 

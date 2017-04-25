@@ -105,7 +105,6 @@ abstract class Field
 
     abstract public function render();
 
-
     /**
      * Gets the value of showLabel.
      *

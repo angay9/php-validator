@@ -83,6 +83,7 @@ abstract class Form
         return $this;
     }
 
+    // Template method pattern
     abstract protected function setUp();
 
     public function render()
