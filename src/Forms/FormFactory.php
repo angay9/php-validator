@@ -8,7 +8,7 @@ use Validation\Validator;
 
 class FormFactory 
 {
-    public static function make(Form $formClass)
+    public static function make($formClass)
     {
         return new $formClass(
             new Validator,
