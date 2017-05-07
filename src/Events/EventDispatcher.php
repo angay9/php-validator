@@ -6,6 +6,12 @@ class EventDispatcher implements EventDispatcherInterface
 {
     protected $listeners = [];
 
+    /**
+     * Attach a listener
+     *
+     * @param Listener $listener
+     * @return void
+     */
     public function attach(Listener $listener)
     {
         $key = $this->getListenerKey($listener);
@@ -16,6 +22,12 @@ class EventDispatcher implements EventDispatcherInterface
         }
     }
 
+    /**
+     * Detach a given listener
+     *
+     * @param Listener $listener
+     * @return void
+     */
     public function detach(Listener $listener)
     {
         $key = $this->getListenerKey($listener);
@@ -26,6 +38,13 @@ class EventDispatcher implements EventDispatcherInterface
         }
     }
 
+    /**
+     * Notify listeners  subscribed to event
+     *
+     * @param string $event
+     * @param array $data
+     * @return void
+     */
     public function notify($event, array $data = [])
     {
         // var_dump($event, $this->listeners);
@@ -38,6 +57,12 @@ class EventDispatcher implements EventDispatcherInterface
         }
     }
 
+    /**
+     * Get listener key
+     *
+     * @param Listener $listener
+     * @return void
+     */
     protected function getListenerKey($listener)
     {
         return spl_object_hash($listener);
